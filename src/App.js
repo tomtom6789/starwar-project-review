@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 
 
@@ -8,9 +9,13 @@ import NavBar from './components/NavBar';
 import CharacterList from './containers/characters/CharacterList';
 import CharacterForm from './containers/characters/CharacterForm';
 import CharacterShow from './containers/characters/CharacterShow';
-
+import {fetchCharacters} from './actions/characters'
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.fetchCharacters();
+  }
 
   render() {
     return (
@@ -32,4 +37,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, {fetchCharacters})(App);
+
